@@ -107,7 +107,7 @@ const scaleIn = {
 export default function Home() {
   return (
     <div className="flex flex-col">
-      {/* Hero Section */}
+      {/* 1. HERO + CTA PRINCIPAL */}
       <section className="relative py-32 text-center min-h-[80vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 bg-grid" />
         <div className="absolute inset-0 bg-gradient-radial" />
@@ -170,7 +170,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Stats Section */}
+      {/* 2. STATS */}
       <section className="py-16 bg-muted/30 border-y">
         <div className="container mx-auto px-4">
           <motion.div 
@@ -190,7 +190,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Features Section - Organized by Category */}
+      {/* 3. FEATURES - Organizadas por categoría */}
       {features.map((category, categoryIndex) => (
         <section key={category.category} className={`py-20 ${categoryIndex % 2 === 1 ? 'bg-muted/30' : ''}`}>
           <div className="container mx-auto px-4">
@@ -229,7 +229,7 @@ export default function Home() {
         </section>
       ))}
 
-      {/* How It Works */}
+      {/* 4. HOW IT WORKS */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <motion.div
@@ -274,7 +274,7 @@ const payment = await client.payments.create({
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* 5. CTA SECUNDARIO */}
       <section className="py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-radial" />
         <div className="container mx-auto px-4 relative z-10 text-center">
@@ -300,40 +300,7 @@ const payment = await client.payments.create({
         </div>
       </section>
 
-      {/* Sponsors Section */}
-      <section className="py-12 bg-muted/30 border-t">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <p className="text-center text-sm text-muted-foreground mb-8">
-              Trusted by innovative companies worldwide
-            </p>
-          </motion.div>
-          <motion.div 
-            className="flex flex-wrap justify-center gap-8 items-center opacity-60"
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-          >
-            {sponsors.map((sponsor) => (
-              <motion.div
-                key={sponsor}
-                variants={scaleIn}
-                className="text-lg font-semibold text-muted-foreground px-6 py-3"
-              >
-                {sponsor}
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Newsletter Section */}
+      {/* 6. NEWSLETTER */}
       <section className="py-20">
         <div className="container mx-auto px-4 max-w-md text-center">
           <motion.div
