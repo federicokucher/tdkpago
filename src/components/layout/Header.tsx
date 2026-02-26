@@ -9,13 +9,6 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
 import { useTheme } from "@/hooks/useTheme"
 import { motion, AnimatePresence } from "framer-motion"
@@ -42,6 +35,36 @@ const resourcesItems = [
   { label: "Help Center", href: "/help", description: "FAQs and support" },
   { label: "Discord", href: "https://discord.gg/tdkpago", description: "Chat with us", external: true },
 ]
+
+function NavLink({ item }: { item: typeof productItems[0] }) {
+  if (item.external) {
+    return (
+      <a
+        href={item.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex flex-col gap-1 rounded-md p-3 hover:bg-muted transition-colors"
+      >
+        <span className="font-medium flex items-center gap-2">
+          {item.label}
+          <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
+        </span>
+        <span className="text-sm text-muted-foreground">{item.description}</span>
+      </a>
+    )
+  }
+  return (
+    <Link
+      to={item.href}
+      className="flex flex-col gap-1 rounded-md p-3 hover:bg-muted transition-colors"
+    >
+      <span className="font-medium">{item.label}</span>
+      <span className="text-sm text-muted-foreground">{item.description}</span>
+    </Link>
+  )
+}
 
 export function Header() {
   const location = useLocation()
@@ -73,14 +96,7 @@ export function Header() {
                 <NavigationMenuContent>
                   <div className="w-[400px] p-4 grid gap-3">
                     {productItems.map((item) => (
-                      <Link
-                        key={item.href}
-                        to={item.href}
-                        className="flex flex-col gap-1 rounded-md p-3 hover:bg-muted transition-colors"
-                      >
-                        <span className="font-medium">{item.label}</span>
-                        <span className="text-sm text-muted-foreground">{item.description}</span>
-                      </Link>
+                      <NavLink key={item.href} item={item} />
                     ))}
                   </div>
                 </NavigationMenuContent>
@@ -94,14 +110,7 @@ export function Header() {
                 <NavigationMenuContent>
                   <div className="w-[400px] p-4 grid gap-3">
                     {companyItems.map((item) => (
-                      <Link
-                        key={item.href}
-                        to={item.href}
-                        className="flex flex-col gap-1 rounded-md p-3 hover:bg-muted transition-colors"
-                      >
-                        <span className="font-medium">{item.label}</span>
-                        <span className="text-sm text-muted-foreground">{item.description}</span>
-                      </Link>
+                      <NavLink key={item.href} item={item} />
                     ))}
                   </div>
                 </NavigationMenuContent>
@@ -115,24 +124,7 @@ export function Header() {
                 <NavigationMenuContent>
                   <div className="w-[400px] p-4 grid gap-3">
                     {resourcesItems.map((item) => (
-                      <Link
-                        key={item.href}
-                        to={item.external ? "/" : item.href}
-                        href={item.href}
-                        target={item.external ? "_blank" : undefined}
-                        rel={item.external ? "noopener noreferrer" : undefined}
-                        className="flex flex-col gap-1 rounded-md p-3 hover:bg-muted transition-colors"
-                      >
-                        <span className="font-medium flex items-center gap-2">
-                          {item.label}
-                          {item.external && (
-                            <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                            </svg>
-                          )}
-                        </span>
-                        <span className="text-sm text-muted-foreground">{item.description}</span>
-                      </Link>
+                      <NavLink key={item.href} item={item} />
                     ))}
                   </div>
                 </NavigationMenuContent>
@@ -252,16 +244,27 @@ export function Header() {
                 <h4 className="font-medium text-sm text-muted-foreground mb-2">Resources</h4>
                 <div className="space-y-2">
                   {resourcesItems.map((item) => (
-                    <Link
-                      key={item.href}
-                      to={item.external ? "/" : item.href}
-                      href={item.href}
-                      target={item.external ? "_blank" : undefined}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="block py-2 hover:text-primary transition-colors"
-                    >
-                      {item.label}
-                    </Link>
+                    item.external ? (
+                      <a
+                        key={item.href}
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="block py-2 hover:text-primary transition-colors"
+                      >
+                        {item.label}
+                      </a>
+                    ) : (
+                      <Link
+                        key={item.href}
+                        to={item.href}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="block py-2 hover:text-primary transition-colors"
+                      >
+                        {item.label}
+                      </Link>
+                    )
                   ))}
                 </div>
               </div>
