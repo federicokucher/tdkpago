@@ -75,6 +75,8 @@ const stats = [
   { value: "99.999%", label: "Uptime SLA" },
 ]
 
+const mainSponsor = "UnionPay"
+
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
@@ -109,7 +111,7 @@ export default function Home() {
             transition={{ duration: 0.6 }}
           >
             <Badge variant="outline" className="mb-6 text-sm px-4 py-1.5 border-primary/20 text-primary">
-              Trusted by 1M+ merchants worldwide
+              Backed by {mainSponsor} — The world's largest payment network
             </Badge>
           </motion.div>
           <motion.div
@@ -291,7 +293,27 @@ const payment = await client.payments.create({
         </div>
       </section>
 
-      {/* 6. NEWSLETTER */}
+      {/* 6. SPONSORS - Our main partner */}
+      <section className="py-16 bg-muted/30 border-y">
+        <div className="container mx-auto px-4 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <p className="text-sm text-muted-foreground mb-4">Our main partner</p>
+            <div className="text-3xl md:text-4xl font-bold text-gradient">
+              {mainSponsor}
+            </div>
+            <p className="text-sm text-muted-foreground mt-2 max-w-md mx-auto">
+              The world's largest payment network, enabling us to connect global wallets to local instant payment systems across 180+ countries.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* 7. NEWSLETTER */}
       <section className="py-20">
         <div className="container mx-auto px-4 max-w-md text-center">
           <motion.div
