@@ -12,6 +12,7 @@ import { useTheme } from "@/hooks/useTheme"
 const navItems = [
   { label: "Home", href: "/" },
   { label: "Technology", href: "/technology" },
+  { label: "Pricing", href: "/pricing" },
   { label: "Blog", href: "/blog" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
@@ -28,7 +29,7 @@ export function Header() {
           <span className="text-xl font-bold">Tdkpago</span>
         </Link>
 
-        <NavigationMenu className="hidden md:flex">
+        <NavigationMenu className="hidden lg:flex">
           <NavigationMenuList>
             {navItems.map((item) => (
               <NavigationMenuItem key={item.href}>
@@ -90,7 +91,7 @@ export function Header() {
               </svg>
             )}
           </Button>
-          <Button asChild>
+          <Button asChild className="hidden sm:flex">
             <Link to="/get-started">Get Started</Link>
           </Button>
         </div>
