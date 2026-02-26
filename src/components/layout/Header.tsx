@@ -13,7 +13,14 @@ import { Button } from "@/components/ui/button"
 import { useTheme } from "@/hooks/useTheme"
 import { motion, AnimatePresence } from "framer-motion"
 
-const productItems = [
+type NavItem = {
+  label: string
+  href: string
+  description: string
+  external?: boolean
+}
+
+const productItems: NavItem[] = [
   { label: "Features", href: "/#features", description: "Everything you need to process payments" },
   { label: "Technology", href: "/technology", description: "Enterprise-grade infrastructure" },
   { label: "Pricing", href: "/pricing", description: "Simple, transparent pricing" },
@@ -21,14 +28,14 @@ const productItems = [
   { label: "Status", href: "/status", description: "System uptime and health" },
 ]
 
-const companyItems = [
+const companyItems: NavItem[] = [
   { label: "About", href: "/about", description: "Learn about our mission" },
   { label: "Careers", href: "/careers", description: "Join our team" },
   { label: "Contact", href: "/contact", description: "Get in touch" },
   { label: "Team", href: "/team", description: "Meet the people behind Tdkpago" },
 ]
 
-const resourcesItems = [
+const resourcesItems: NavItem[] = [
   { label: "Documentation", href: "/docs", description: "Guides and API reference" },
   { label: "Blog", href: "/blog", description: "Latest updates and insights" },
   { label: "Community", href: "/community", description: "Join the conversation" },
@@ -36,7 +43,7 @@ const resourcesItems = [
   { label: "Discord", href: "https://discord.gg/tdkpago", description: "Chat with us", external: true },
 ]
 
-function NavLink({ item }: { item: typeof productItems[0] }) {
+function NavLink({ item }: { item: NavItem }) {
   if (item.external) {
     return (
       <a
