@@ -75,15 +75,6 @@ const stats = [
   { value: "99.999%", label: "Uptime SLA" },
 ]
 
-const sponsors = [
-  "UnionPay",
-  "TDK Labs",
-  "GlobalPay",
-  "SecureNet",
-  "PayFast",
-  "TechFinance",
-]
-
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
