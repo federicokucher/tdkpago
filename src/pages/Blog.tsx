@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
+import { motion } from "framer-motion"
 
 const posts = [
   {
@@ -59,55 +60,102 @@ const posts = [
   },
 ]
 
+const fadeInUp = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.5 }
+}
+
+const staggerContainer = {
+  animate: {
+    transition: {
+      staggerChildren: 0.08
+    }
+  }
+}
+
 export default function Blog() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="py-24 text-center">
+      <section className="py-24 text-center min-h-[40vh] flex items-center">
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl font-bold tracking-tight sm:text-6xl mb-6">
-            Blog
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Stay updated with the latest insights on payments, technology, and financial infrastructure.
-          </p>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <h1 className="text-4xl font-bold tracking-tight sm:text-6xl mb-6">
+              Blog
+            </h1>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Stay updated with the latest insights on payments, technology, and financial infrastructure.
+            </p>
+          </motion.div>
         </div>
       </section>
 
       {/* Blog Posts */}
       <section className="py-24 bg-muted/30">
         <div className="container mx-auto px-4">
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <motion.div 
+            className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
             {posts.map((post) => (
-              <Card key={post.title} className="flex flex-col">
-                <CardHeader>
-                  <div className="text-sm text-muted-foreground mb-2">
-                    {post.category} · {post.date}
+              <motion.div key={post.title} variants={fadeInUp}>
+                <Card className="flex flex-col h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1 cursor-pointer">
+                  <CardHeader>
+                    <div className="text-sm text-muted-foreground mb-2">
+                      {post.category} · {post.date}
+                    </div>
+                    <CardTitle className="line-clamp-2 transition-colors duration-200">{post.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="flex-1">
+                    <p className="text-muted-foreground">{post.excerpt}</p>
+                  </CardContent>
+                  <div className="p-6 pt-0">
+                    <Button variant="outline" className="w-full transition-all duration-200 hover:scale-[1.02]">Read More</Button>
                   </div>
-                  <CardTitle className="line-clamp-2">{post.title}</CardTitle>
-                </CardHeader>
-                <CardContent className="flex-1">
-                  <p className="text-muted-foreground">{post.excerpt}</p>
-                </CardContent>
-                <div className="p-6 pt-0">
-                  <Button variant="outline" className="w-full">Read More</Button>
-                </div>
-              </Card>
+                </Card>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Newsletter */}
       <section className="py-24">
         <div className="container mx-auto px-4 max-w-md">
-          <h2 className="text-2xl font-bold text-center mb-4">
-            Stay informed and never miss an update
-          </h2>
-          <div className="flex gap-2 mt-8">
-            <Input placeholder="Enter your email" type="email" />
-            <Button>Subscribe</Button>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="text-2xl font-bold text-center mb-4">
+              Stay informed and never miss an update
+            </h2>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="flex gap-2 mt-8"
+          >
+            <Input placeholder="Enter your email" type="email" className="transition-all duration-200 focus:ring-2 focus:ring-primary/50" />
+            <Button className="transition-all duration-200 hover:scale-105">Subscribe</Button>
+          </motion.div>
         </div>
       </section>
     </div>
