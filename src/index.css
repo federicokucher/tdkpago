@@ -167,3 +167,57 @@
     transform: scale(1);
   }
 }
+
+@keyframes beam {
+  0% {
+    transform: translateX(-100%) rotate(45deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(200%) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+@keyframes spotlight {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+}
+
+.beam-glow {
+  position: absolute;
+  width: 200px;
+  height: 400px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    oklch(0.6 0.2 150 / 0.3),
+    oklch(0.6 0.2 150 / 0.5),
+    oklch(0.6 0.2 150 / 0.3),
+    transparent
+  );
+  animation: beam 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.spotlight-glow {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(
+    circle,
+    oklch(0.6 0.2 150 / 0.15) 0%,
+    transparent 70%
+  );
+  animation: spotlight 6s ease-in-out infinite;
+  pointer-events: none;
+}

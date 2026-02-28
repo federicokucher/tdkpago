@@ -171,6 +171,10 @@ export default function Features() {
       <section className="relative py-24 text-center overflow-hidden">
         <div className="absolute inset-0 bg-grid" />
         <div className="absolute inset-0 bg-gradient-radial" />
+        {/* Laser beam effects */}
+        <div className="beam-glow -top-32 -left-32" style={{ animationDelay: '0s' }} />
+        <div className="beam-glow -top-32 -left-32" style={{ animationDelay: '2s' }} />
+        <div className="spotlight-glow top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
