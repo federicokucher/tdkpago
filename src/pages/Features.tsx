@@ -3,6 +3,42 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { motion } from "framer-motion"
+import { useEffect, useState } from "react"
+
+type Particle = {
+  id: number
+  left: number
+  delay: number
+  duration: number
+}
+
+function FloatingParticles() {
+  const [particles] = useState<Particle[]>(() => 
+    Array.from({ length: 15 }, (_, i) => ({
+      id: i,
+      left: Math.random() * 100,
+      delay: Math.random() * 5,
+      duration: 3 + Math.random() * 4,
+    }))
+  )
+
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {particles.map((particle) => (
+        <div
+          key={particle.id}
+          className="floating-particle"
+          style={{
+            left: `${particle.left}%`,
+            bottom: '-20px',
+            animation: `float-up ${particle.duration}s ease-out infinite`,
+            animationDelay: `${particle.delay}s`,
+          }}
+        />
+      ))}
+    </div>
+  )
+}
 
 const featuresByCategory = [
   {
@@ -170,11 +206,13 @@ export default function Features() {
       {/* Hero */}
       <section className="relative py-24 text-center overflow-hidden">
         <div className="absolute inset-0 bg-grid" />
+        <div className="absolute inset-0 animated-grid" />
         <div className="absolute inset-0 bg-gradient-radial" />
         {/* Laser beam effects */}
         <div className="beam-glow -top-32 -left-32" style={{ animationDelay: '0s' }} />
         <div className="beam-glow -top-32 -left-32" style={{ animationDelay: '2s' }} />
         <div className="spotlight-glow top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+        <FloatingParticles />
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
