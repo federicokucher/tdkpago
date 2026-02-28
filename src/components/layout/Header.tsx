@@ -21,7 +21,7 @@ type NavItem = {
 }
 
 const productItems: NavItem[] = [
-  { label: "Features", href: "/#features", description: "Everything you need to process payments" },
+  { label: "Features", href: "/features", description: "Everything you need to process payments" },
   { label: "Technology", href: "/technology", description: "Enterprise-grade infrastructure" },
   { label: "Pricing", href: "/pricing", description: "Simple, transparent pricing" },
   { label: "API Reference", href: "/docs", description: "Comprehensive documentation" },
