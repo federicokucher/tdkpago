@@ -4,43 +4,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { motion } from "framer-motion"
-import { useState } from "react"
-
-type Particle = {
-  id: number
-  left: number
-  delay: number
-  duration: number
-}
-
-function FloatingParticles() {
-  const [particles] = useState<Particle[]>(() => 
-    Array.from({ length: 8 }, (_, i) => ({
-      id: i,
-      left: 20 + Math.random() * 60,
-      delay: Math.random() * 8,
-      duration: 4 + Math.random() * 4,
-    }))
-  )
-
-  return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {particles.map((particle) => (
-        <div
-          key={particle.id}
-          className="absolute w-1 h-1 bg-primary/40 rounded-full"
-          style={{
-            left: `${particle.left}%`,
-            bottom: '20%',
-            animation: `shooting-star ${particle.duration}s linear infinite`,
-            animationDelay: `${particle.delay}s`,
-            boxShadow: '0 0 6px oklch(0.45 0.15 160 / 0.6), 0 0 12px oklch(0.45 0.15 160 / 0.3)',
-          }}
-        />
-      ))}
-    </div>
-  )
-}
 
 const features = [
   {
@@ -146,137 +109,83 @@ const scaleIn = {
 export default function Home() {
   return (
     <div className="flex flex-col">
-      {/* 1. HERO - Premium, distinctive design */}
-      <section className="relative py-32 lg:py-48 text-center min-h-[85vh] flex items-center overflow-hidden">
-        {/* Background layers */}
+      {/* 1. HERO + CTA PRINCIPAL */}
+      <section className="relative py-32 text-center min-h-[80vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 bg-grid" />
-        <div className="absolute inset-0 gradient-mesh" />
-        <div className="absolute inset-0 spotlight-glow" style={{ animationDelay: '0s' }} />
-        
-        {/* Floating particles */}
-        <FloatingParticles />
-        
+        <div className="absolute inset-0 bg-gradient-radial" />
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.6 }}
           >
-            <Badge 
-              variant="outline" 
-              className="mb-8 text-sm px-5 py-2 border-primary/20 text-primary bg-primary/5 backdrop-blur-sm"
-            >
-              <span className="mr-2">✦</span>
-              Backed by {mainSponsor}
+            <Badge variant="outline" className="mb-6 text-sm px-4 py-1.5 border-primary/20 text-primary">
+              Backed by {mainSponsor} — The world's largest payment network
             </Badge>
           </motion.div>
-          
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <h1 
-              className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-8"
-              style={{ fontFamily: 'var(--font-outfit)' }}
-            >
-              <span className="text-gradient-animated">Payment infrastructure</span>
+            <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6">
+              <span className="text-gradient">Payment infrastructure</span>
               <br />
-              <span className="text-foreground/90">for global wallets.</span>
+              for global wallets.
             </h1>
           </motion.div>
-          
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <p 
-              className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed"
-              style={{ fontFamily: 'var(--font-dm-sans)' }}
-            >
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10">
               Connect global wallets to local instant payment networks. 
               Process millions of transactions with bank-grade security.
             </p>
           </motion.div>
-          
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <Button 
-              size="lg" 
-              asChild 
-              className="glow-button text-base px-8 py-6 h-auto font-medium"
-              style={{ fontFamily: 'var(--font-dm-sans)' }}
-            >
-              <Link to="/get-started">
-                Start building — it's free
-                <span className="ml-2">→</span>
-              </Link>
+            <Button size="lg" asChild className="glow-green-hover bg-primary text-primary-foreground hover:bg-primary/90">
+              <Link to="/get-started">Start building — it's free</Link>
             </Button>
-            <Button 
-              size="lg" 
-              variant="outline" 
-              asChild
-              className="text-base px-8 py-6 h-auto font-medium"
-            >
+            <Button size="lg" variant="outline" asChild>
               <Link to="/contact">Talk to sales</Link>
             </Button>
           </motion.div>
-          
-          {/* Trust indicators */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="mt-16 flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm text-muted-foreground"
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="mt-12 flex flex-wrap justify-center gap-8 text-sm text-muted-foreground"
           >
-            <span className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-              No credit card required
-            </span>
-            <span className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-              5 min integration
-            </span>
-            <span className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-              Free sandbox
-            </span>
+            <span>No credit card required</span>
+            <span>•</span>
+            <span>5 min integration</span>
+            <span>•</span>
+            <span>Free sandbox</span>
           </motion.div>
         </div>
       </section>
 
-      {/* 2. STATS - Enhanced with better styling */}
-      <section className="py-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-primary/5" />
-        <div className="container mx-auto px-4 relative">
+      {/* 2. STATS */}
+      <section className="py-16 bg-muted/30 border-y">
+        <div className="container mx-auto px-4">
           <motion.div 
-            className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12"
+            className="grid grid-cols-2 md:grid-cols-4 gap-8"
             variants={staggerContainer}
             initial="initial"
             whileInView="animate"
             viewport={{ once: true }}
           >
-            {stats.map((stat, index) => (
-              <motion.div 
-                key={stat.label} 
-                variants={fadeInUp}
-                className="text-center relative"
-              >
-                <div 
-                  className="text-4xl md:text-5xl lg:text-6xl font-bold text-gradient-animated mb-2"
-                  style={{ fontFamily: 'var(--font-outfit)' }}
-                >
-                  {stat.value}
-                </div>
-                <p className="text-sm md:text-base text-muted-foreground font-medium">{stat.label}</p>
-                {index < stats.length - 1 && (
-                  <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 w-px h-12 bg-border/50" />
-                )}
+            {stats.map((stat) => (
+              <motion.div key={stat.label} variants={fadeInUp} className="text-center">
+                <div className="text-3xl md:text-4xl font-bold text-gradient mb-1">{stat.value}</div>
+                <p className="text-sm text-muted-foreground">{stat.label}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -297,27 +206,27 @@ export default function Home() {
               <Badge variant="secondary" className="mb-3">{category.category}</Badge>
               <h2 className="text-2xl font-bold">Everything you need</h2>
             </motion.div>
-              <motion.div 
-                className="grid gap-6 md:grid-cols-3"
-                variants={staggerContainer}
-                initial="initial"
-                whileInView="animate"
-                viewport={{ once: true }}
-              >
-                {category.items.map((feature) => (
-                  <motion.div key={feature.title} variants={scaleIn}>
-                    <Card className="glass-card hover:bg-card/60 hover:border-primary/40 transition-all duration-500 h-full group hover:shadow-lg hover:shadow-primary/5">
-                      <CardHeader>
-                        <div className="text-4xl mb-3 transition-transform duration-300 group-hover:scale-110" aria-hidden="true">{feature.icon}</div>
-                        <CardTitle className="text-lg font-semibold">{feature.title}</CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                ))}
-              </motion.div>
+            <motion.div 
+              className="grid gap-6 md:grid-cols-3"
+              variants={staggerContainer}
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+            >
+              {category.items.map((feature) => (
+                <motion.div key={feature.title} variants={scaleIn}>
+                  <Card className="border-border/50 bg-card/50 backdrop-blur hover:bg-card/80 hover:border-primary/30 transition-all duration-300 h-full">
+                    <CardHeader>
+                      <div className="text-3xl mb-2" aria-hidden="true">{feature.icon}</div>
+                      <CardTitle className="text-lg">{feature.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm text-muted-foreground">{feature.description}</p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </motion.div>
           </div>
         </section>
       ))}
