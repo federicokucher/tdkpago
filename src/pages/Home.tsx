@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { motion } from "framer-motion"
+import { Zap, Globe, Coins, Code2, BookOpen, FlaskConical, Lock, Activity, TrendingUp } from "lucide-react"
 
 const features = [
   {
@@ -12,20 +13,17 @@ const features = [
       {
         title: "Instant Settlement",
         description: "Process transactions in milliseconds with our optimized payment routing",
-        icon: "⚡",
-        iconAlt: "Lightning bolt",
+        icon: Zap,
       },
       {
         title: "Global Coverage",
         description: "Connect to payment networks across LATAM and beyond",
-        icon: "🌍",
-        iconAlt: "Globe",
+        icon: Globe,
       },
       {
         title: "Multiple Currencies",
         description: "Support for multiple currencies with real-time exchange rates",
-        icon: "💱",
-        iconAlt: "Currency exchange",
+        icon: Coins,
       },
     ]
   },
@@ -35,20 +33,17 @@ const features = [
       {
         title: "Developer First APIs",
         description: "RESTful APIs, webhooks, and SDKs in multiple languages",
-        icon: "🛠️",
-        iconAlt: "Tools",
+        icon: Code2,
       },
       {
         title: "Comprehensive Docs",
         description: "Detailed guides, code samples, and API references",
-        icon: "📚",
-        iconAlt: "Books",
+        icon: BookOpen,
       },
       {
         title: "Sandbox Environment",
         description: "Test integrations with zero cost before going live",
-        icon: "🧪",
-        iconAlt: "Test tube",
+        icon: FlaskConical,
       },
     ]
   },
@@ -58,20 +53,17 @@ const features = [
       {
         title: "Bank-Grade Security",
         description: "PCI-DSS compliant with end-to-end encryption and fraud detection",
-        icon: "🔒",
-        iconAlt: "Lock",
+        icon: Lock,
       },
       {
         title: "99.999% Uptime",
         description: "Enterprise-grade infrastructure with automatic failover",
-        icon: "📈",
-        iconAlt: "Chart",
+        icon: TrendingUp,
       },
       {
         title: "Real-time Analytics",
         description: "Monitor transactions, revenue, and metrics in real-time",
-        icon: "📊",
-        iconAlt: "Analytics chart",
+        icon: Activity,
       },
     ]
   },
@@ -215,9 +207,9 @@ export default function Home() {
             >
               {category.items.map((feature) => (
                 <motion.div key={feature.title} variants={scaleIn}>
-                  <Card className="border-border/50 bg-card/50 backdrop-blur hover:bg-card/80 hover:border-primary/30 transition-all duration-300 h-full">
+                  <Card className="border-border/50 bg-card/50 backdrop-blur hover:bg-card/80 hover:border-primary/30 hover:scale-[1.02] transition-all duration-300 h-full">
                     <CardHeader>
-                      <div className="text-3xl mb-2" aria-hidden="true">{feature.icon}</div>
+                      <feature.icon className="w-8 h-8 mb-2 text-primary" aria-hidden="true" />
                       <CardTitle className="text-lg">{feature.title}</CardTitle>
                     </CardHeader>
                     <CardContent>
