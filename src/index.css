@@ -249,6 +249,76 @@
   }
 }
 
+@keyframes shooting-star {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-200px) scale(0.3);
+    opacity: 0;
+  }
+}
+
+.shooting-star {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: oklch(0.8 0.2 150 / 1);
+  border-radius: 50%;
+  box-shadow: 
+    0 0 4px oklch(0.8 0.2 150 / 0.8),
+    0 0 12px oklch(0.8 0.2 150 / 0.5),
+    0 0 24px oklch(0.8 0.2 150 / 0.3);
+}
+
+.shooting-star::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -1px;
+  width: 2px;
+  height: 80px;
+  background: linear-gradient(
+    to top,
+    transparent,
+    oklch(0.8 0.2 150 / 0.4),
+    oklch(0.8 0.2 150 / 0.6)
+  );
+  transform-origin: bottom center;
+}
+
+@keyframes wave-up {
+  0%, 100% {
+    transform: translateY(20px) scale(1);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(0) scale(1);
+    opacity: 0.4;
+  }
+}
+
+.wave-glow {
+  position: absolute;
+  bottom: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150%;
+  height: 80%;
+  background: radial-gradient(
+    ellipse at center bottom,
+    oklch(0.6 0.2 150 / 0.2) 0%,
+    oklch(0.6 0.2 150 / 0.1) 30%,
+    transparent 70%
+  );
+  animation: wave-up 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
 .animated-grid {
   background-image: 
     linear-gradient(to right, oklch(0.5 0.1 150 / 0.1) 1px, transparent 1px),

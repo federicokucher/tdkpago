@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { motion } from "framer-motion"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 type Particle = {
   id: number
@@ -14,11 +14,11 @@ type Particle = {
 
 function FloatingParticles() {
   const [particles] = useState<Particle[]>(() => 
-    Array.from({ length: 15 }, (_, i) => ({
+    Array.from({ length: 12 }, (_, i) => ({
       id: i,
       left: Math.random() * 100,
-      delay: Math.random() * 5,
-      duration: 3 + Math.random() * 4,
+      delay: Math.random() * 8,
+      duration: 2 + Math.random() * 3,
     }))
   )
 
@@ -27,11 +27,11 @@ function FloatingParticles() {
       {particles.map((particle) => (
         <div
           key={particle.id}
-          className="floating-particle"
+          className="shooting-star"
           style={{
             left: `${particle.left}%`,
-            bottom: '-20px',
-            animation: `float-up ${particle.duration}s ease-out infinite`,
+            bottom: '10%',
+            animation: `shooting-star ${particle.duration}s linear infinite`,
             animationDelay: `${particle.delay}s`,
           }}
         />
@@ -208,9 +208,7 @@ export default function Features() {
         <div className="absolute inset-0 bg-grid" />
         <div className="absolute inset-0 animated-grid" />
         <div className="absolute inset-0 bg-gradient-radial" />
-        {/* Laser beam effects */}
-        <div className="beam-glow -top-32 -left-32" style={{ animationDelay: '0s' }} />
-        <div className="beam-glow -top-32 -left-32" style={{ animationDelay: '2s' }} />
+        {/* Spotlight */}
         <div className="spotlight-glow top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
         <FloatingParticles />
         <div className="container mx-auto px-4 relative z-10">
@@ -321,7 +319,7 @@ export default function Features() {
                   <Card className="border-border/50 bg-card/50 backdrop-blur hover:bg-card/80 hover:border-primary/30 transition-all duration-300 h-full">
                     <CardHeader>
                       <div className="flex items-start gap-4">
-                        <div className="text-3xl">{feature.icon}</div>
+                        <div className="text-3xl" aria-hidden="true">{feature.icon}</div>
                         <div className="flex-1">
                           <CardTitle className="text-lg mb-1">{feature.title}</CardTitle>
                           <p className="text-sm text-muted-foreground">{feature.description}</p>

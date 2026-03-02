@@ -2,6 +2,11 @@
 
 > This file provides context for AI coding agents working on the Tdkpago project.
 
+## AI Agent
+
+- **Nombre**: Loqui
+- **Rol**: Asistente de desarrollo
+
 ## Project Overview
 
 Tdkpago is a professional landing page for a payment infrastructure company, built with modern web technologies. The site showcases payment solutions, company information, and provides contact forms.

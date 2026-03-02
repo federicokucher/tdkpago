@@ -57,15 +57,15 @@ export default function GetStarted() {
                 <form className="space-y-4">
                   <div className="space-y-2">
                     <Label htmlFor="company">Company Name</Label>
-                    <Input id="company" placeholder="Your company" className="transition-all duration-200 focus:ring-2 focus:ring-primary/50" />
+                    <Input id="company" placeholder="Your company" autoComplete="organization" className="transition-all duration-200 focus:ring-2 focus:ring-primary/50" />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="email">Work Email</Label>
-                    <Input id="email" type="email" placeholder="you@company.com" className="transition-all duration-200 focus:ring-2 focus:ring-primary/50" />
+                    <Input id="email" type="email" placeholder="you@company.com…" autoComplete="email" className="transition-all duration-200 focus:ring-2 focus:ring-primary/50" />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="project">Project Description</Label>
-                    <Textarea id="project" placeholder="Tell us about your project..." rows={5} className="transition-all duration-200 focus:ring-2 focus:ring-primary/50" />
+                    <Textarea id="project" placeholder="Tell us about your project…" rows={5} className="transition-all duration-200 focus:ring-2 focus:ring-primary/50" />
                   </div>
                   <Button type="submit" className="w-full transition-all duration-200 hover:scale-[1.02]">
                     Submit Request
@@ -97,7 +97,7 @@ export default function GetStarted() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="flex gap-2 mt-8"
           >
-            <Input placeholder="Enter your email" type="email" className="transition-all duration-200 focus:ring-2 focus:ring-primary/50" />
+            <Input placeholder="Enter your email…" type="email" autoComplete="email" aria-label="Email address" className="transition-all duration-200 focus:ring-2 focus:ring-primary/50" />
             <Button className="transition-all duration-200 hover:scale-105">Subscribe</Button>
           </motion.div>
         </div>

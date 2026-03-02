@@ -13,16 +13,19 @@ const features = [
         title: "Instant Settlement",
         description: "Process transactions in milliseconds with our optimized payment routing",
         icon: "⚡",
+        iconAlt: "Lightning bolt",
       },
       {
         title: "Global Coverage",
-        description: "Connect to 300+ payment networks across 180+ countries",
+        description: "Connect to payment networks across LATAM and beyond",
         icon: "🌍",
+        iconAlt: "Globe",
       },
       {
         title: "Multiple Currencies",
-        description: "Support for 135+ currencies with real-time exchange rates",
+        description: "Support for multiple currencies with real-time exchange rates",
         icon: "💱",
+        iconAlt: "Currency exchange",
       },
     ]
   },
@@ -31,18 +34,21 @@ const features = [
     items: [
       {
         title: "Developer First APIs",
-        description: "RESTful APIs, webhooks, and SDKs in 10+ languages",
+        description: "RESTful APIs, webhooks, and SDKs in multiple languages",
         icon: "🛠️",
+        iconAlt: "Tools",
       },
       {
         title: "Comprehensive Docs",
         description: "Detailed guides, code samples, and API references",
         icon: "📚",
+        iconAlt: "Books",
       },
       {
         title: "Sandbox Environment",
         description: "Test integrations with zero cost before going live",
         icon: "🧪",
+        iconAlt: "Test tube",
       },
     ]
   },
@@ -53,16 +59,19 @@ const features = [
         title: "Bank-Grade Security",
         description: "PCI-DSS compliant with end-to-end encryption and fraud detection",
         icon: "🔒",
+        iconAlt: "Lock",
       },
       {
         title: "99.999% Uptime",
         description: "Enterprise-grade infrastructure with automatic failover",
         icon: "📈",
+        iconAlt: "Chart",
       },
       {
         title: "Real-time Analytics",
         description: "Monitor transactions, revenue, and metrics in real-time",
         icon: "📊",
+        iconAlt: "Analytics chart",
       },
     ]
   },
@@ -208,7 +217,7 @@ export default function Home() {
                 <motion.div key={feature.title} variants={scaleIn}>
                   <Card className="border-border/50 bg-card/50 backdrop-blur hover:bg-card/80 hover:border-primary/30 transition-all duration-300 h-full">
                     <CardHeader>
-                      <div className="text-3xl mb-2">{feature.icon}</div>
+                      <div className="text-3xl mb-2" aria-hidden="true">{feature.icon}</div>
                       <CardTitle className="text-lg">{feature.title}</CardTitle>
                     </CardHeader>
                     <CardContent>
@@ -245,7 +254,7 @@ export default function Home() {
             className="max-w-2xl mx-auto"
           >
             <div className="bg-muted/50 rounded-lg p-6 font-mono text-sm overflow-x-auto">
-              <pre className="text-muted-foreground"><code>{`# Install the SDK
+              <pre className="text-muted-foreground"><code className="language-bash">{`# Install the SDK
 npm install @tdkpago/sdk
 
 # Initialize
@@ -335,8 +344,10 @@ const payment = await client.payments.create({
             className="flex gap-2"
           >
             <Input 
-              placeholder="Enter your email" 
+              placeholder="Enter your email…" 
               type="email" 
+              autoComplete="email"
+              aria-label="Email address"
               className="transition-all duration-200 focus:ring-2 focus:ring-primary/50"
             />
             <Button className="bg-primary text-primary-foreground hover:bg-primary/90">Subscribe</Button>

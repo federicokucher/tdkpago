@@ -222,7 +222,7 @@ export default function About() {
               <motion.div key={value.title} variants={scaleIn}>
                 <Card className="border-border/50 bg-card/50 backdrop-blur hover:bg-card/80 hover:border-primary/30 transition-all duration-300 h-full">
                   <CardHeader>
-                    <div className="text-3xl mb-2">{value.icon}</div>
+                    <div className="text-3xl mb-2" aria-hidden="true">{value.icon}</div>
                     <CardTitle>{value.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
